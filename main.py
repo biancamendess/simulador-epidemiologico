@@ -4,13 +4,11 @@ matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
 
 
-
+#Representation of the farm as a 5x5 matrix with a single infected cell in the center
 farm = np.zeros((5, 5), dtype=int)
 farm[2, 2] = 1
-
-plt.imshow(farm, cmap='inferno', vmin=0, vmax=1)
+img = plt.imshow(farm, cmap='Blues', vmin=0, vmax=1)
 plt.axis('off')
-plt.show()
 
 
 def propagate_infection(matriz):
@@ -43,9 +41,12 @@ def propagate_infection(matriz):
 
     return matriz 
 
-for round in range(4):
+#loop to propagate the infection for 4 iterations
+for iteration in range(4):
     farm = propagate_infection(farm)
-    print(f"Round {round + 1}:" )
+    print(f"Round {iteration + 1}:" )
     print(farm)
+    img.set_data(farm)
+    plt.pause(0.5)  
 
-
+plt.show()  
