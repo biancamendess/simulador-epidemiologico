@@ -1,8 +1,17 @@
 import numpy as np
+import matplotlib 
+matplotlib.use("TkAgg")
+import matplotlib.pyplot as plt
 
-fazenda = np.zeros((5, 5), dtype=int)
 
-fazenda[2, 2] = 1
+
+farm = np.zeros((5, 5), dtype=int)
+farm[2, 2] = 1
+
+plt.imshow(farm, cmap='inferno', vmin=0, vmax=1)
+plt.axis('off')
+plt.show()
+
 
 def propagate_infection(matriz):
     #creation of the matrices shifted in each direction place
@@ -34,7 +43,9 @@ def propagate_infection(matriz):
 
     return matriz 
 
-for rodada in range(4):
-    fazenda = propagate_infection(fazenda)
-    print(f"Rodada {rodada + 1}:" )
-    print(fazenda)
+for round in range(4):
+    farm = propagate_infection(farm)
+    print(f"Round {round + 1}:" )
+    print(farm)
+
+
