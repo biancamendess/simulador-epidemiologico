@@ -1,111 +1,120 @@
-# Simulador Epidemiológico Vetorial
+# Vectorized Epidemiological Simulator
 
-Um simulador computacional de propagação de doenças em ambientes bidimensionais, desenvolvido com Python e NumPy.
+A computational simulator for modeling disease spread in two-dimensional environments, developed with Python and NumPy.
 
-O projeto tem como objetivo modelar como uma infecção se espalha pelo espaço e evolui ao longo do tempo, explorando operações vetorizadas, autômatos celulares e modelagem de sistemas dinâmicos.
+The project aims to model how an infection spreads across space and evolves over time, exploring vectorized operations, cellular automata, and dynamic system modeling.
 
-A proposta é construir progressivamente um modelo capaz de representar diferentes cenários de disseminação, visualizar a evolução de uma epidemia e investigar como fatores espaciais e regras de transmissão influenciam sua propagação.
+The goal is to progressively build a model capable of representing different disease transmission scenarios, visualizing epidemic progression, and investigating how spatial factors and transmission rules influence the spread of infection.
 
-## Visão do projeto
+## Project Overview
 
-O ambiente é representado inicialmente por uma grade bidimensional, em que cada célula corresponde a uma posição da área simulada. A infecção começa em uma célula inicial, o paciente zero, e se propaga para as posições vizinhas de acordo com as regras definidas no modelo.
+The environment is initially represented as a two-dimensional grid, where each cell corresponds to a position in the simulated area. The infection starts in an initial cell, known as the index case or patient zero, and spreads to neighboring cells according to the rules defined by the model.
 
-A cada rodada, o simulador atualiza o estado das células, permitindo acompanhar a expansão da infecção ao longo do tempo.
+At each iteration, the simulator updates the state of the cells, allowing the expansion of the infected region to be tracked over time.
 
-A implementação parte de um modelo determinístico simples e será ampliada gradualmente para explorar regras epidemiológicas mais sofisticadas e cenários ambientais.
+The implementation starts with a simple deterministic model and will gradually incorporate more sophisticated epidemiological rules and environmental scenarios.
 
-## O que o simulador pretende fazer
+## Planned Features
 
-- **Simular a propagação espacial:** representar a disseminação de uma infecção entre células vizinhas em uma grade bidimensional.
-- **Acompanhar a evolução temporal:** executar múltiplas rodadas e observar como a região infectada se expande.
-- **Visualizar a disseminação:** transformar as matrizes em representações visuais e desenvolver uma animação que permita acompanhar a progressão da infecção.
-- **Explorar diferentes cenários de transmissão:** investigar como regras alternativas, probabilidades de contágio e condições ambientais podem alterar os resultados da simulação.
-- **Incorporar dinâmica epidemiológica:** evoluir de um modelo binário para uma representação inspirada no modelo SEIR, distinguindo indivíduos suscetíveis, expostos, infecciosos e recuperados.
-- **Investigar a influência do ambiente:** explorar fatores como direção predominante de propagação, barreiras espaciais e características do terreno na dinâmica da infecção.
+- **Spatial infection propagation:** Model the spread of infection between neighboring cells in a two-dimensional grid.
+- **Temporal evolution:** Run multiple iterations and observe how the infected region expands over time.
+- **Infection visualization:** Transform matrices into visual representations and develop an animation to track the progression of infection.
+- **Transmission scenarios:** Investigate how alternative rules, transmission probabilities, and environmental conditions affect simulation outcomes.
+- **Epidemiological dynamics:** Evolve from a binary model into a representation inspired by the SEIR model, distinguishing between susceptible, exposed, infectious, and recovered individuals.
+- **Environmental influence:** Explore factors such as predominant propagation direction, spatial barriers, and terrain characteristics in the dynamics of infection.
 
-Essas funcionalidades serão desenvolvidas por etapas, começando pela propagação espacial e avançando para modelos mais elaborados.
+These features will be implemented incrementally, starting with spatial propagation and gradually moving toward more advanced models.
 
-## Como o modelo funciona
+## How the Model Works
 
-O simulador utiliza uma matriz NumPy para representar o ambiente. Cada posição contém um estado que determina a condição daquela célula.
+The simulator uses a NumPy array to represent the environment. Each position contains a state that determines the condition of that cell.
 
-No protótipo atual, os estados são:
+In the current prototype, the states are:
 
-- `0`: saudável.
-- `1`: infectada.
+- `0`: Healthy cell.
+- `1`: Infected cell.
 
-A simulação começa com uma célula infectada. Em cada rodada, o algoritmo identifica os vizinhos ortogonais das células infectadas, seleciona as células saudáveis que estão ao lado delas e atualiza seus estados.
+The simulation starts with a single infected cell. At each iteration, the algorithm identifies the orthogonal neighbors of infected cells, selects the healthy cells adjacent to them, and updates their states.
 
-A propagação considera as quatro direções principais: cima, baixo, esquerda e direita. As bordas da matriz são tratadas explicitamente para impedir que posições opostas do ambiente sejam consideradas vizinhas por causa dos deslocamentos circulares.
+Propagation considers the four main directions: up, down, left, and right. Matrix boundaries are explicitly handled to prevent opposite edges of the environment from being incorrectly treated as neighbors due to circular shifts.
 
-O processo é repetido usando o resultado da rodada anterior, permitindo observar a expansão progressiva da região infectada.
+The process is repeated using the result of the previous iteration, allowing the infected region to expand progressively.
 
-## Desenvolvimento atual
+## Current Development Status
 
-O projeto está em desenvolvimento incremental.
+The project is being developed incrementally.
 
-- [x] Construção da grade bidimensional.
-- [x] Definição do paciente zero.
-- [x] Identificação de vizinhos com `np.roll`.
-- [x] Operações vetorizadas e máscaras booleanas para identificar novas infecções.
-- [x] Tratamento das bordas da matriz.
-- [x] Propagação da infecção em múltiplas rodadas.
-- [ ] Visualização espacial com Matplotlib.
-- [ ] Animação da evolução da infecção.
-- [ ] Experimentação com diferentes regras e probabilidades de transmissão.
-- [ ] Introdução de estados epidemiológicos e períodos de incubação.
-- [ ] Exploração de fatores ambientais e barreiras espaciais.
+- [x] Create the two-dimensional grid.
+- [x] Define the initial infected cell (patient zero).
+- [x] Identify neighboring cells using `np.roll`.
+- [x] Implement vectorized operations and boolean masks to identify new infections.
+- [x] Handle matrix boundaries.
+- [x] Implement infection propagation across multiple iterations.
+- [x] Implement static spatial visualization using Matplotlib.
+- [ ] Animate the progression of infection over time.
+- [ ] Experiment with different transmission rules and probabilities.
+- [ ] Introduce epidemiological states and incubation periods.
+- [ ] Explore environmental factors and spatial barriers.
 
-## Tecnologias e conceitos
+## Technologies and Concepts
 
-**Tecnologias**
+**Technologies**
+
 - Python
 - NumPy
 - Matplotlib
-- Git e GitHub
+- Git and GitHub
 
-**Conceitos explorados**
-- Computação científica com Python.
-- Manipulação vetorizada de matrizes.
-- Indexação e máscaras booleanas.
-- Autômatos celulares.
-- Simulação de sistemas dinâmicos.
-- Modelagem e visualização de processos espaciais.
+**Concepts**
 
-## Como executar
+- Scientific computing with Python.
+- Vectorized array operations.
+- Array indexing and boolean masks.
+- Cellular automata.
+- Dynamic system simulation.
+- Spatial modeling and visualization.
 
-Clone o repositório:
+## Getting Started
+
+Clone the repository:
 
 ```bash
 git clone https://github.com/biancamendess/simulador-epidemiologico.git
 cd simulador-epidemiologico
 ```
 
-Crie e ative um ambiente virtual no Linux:
+Create and activate a virtual environment on Linux:
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 ```
 
-Instale o NumPy:
+Install the Python dependencies:
 
 ```bash
-python -m pip install numpy
+python -m pip install numpy matplotlib
 ```
 
-Execute o protótipo:
+On Ubuntu or Debian, install Tkinter if it is not already available:
+
+```bash
+sudo apt update
+sudo apt install python3-tk
+```
+
+Run the simulator:
 
 ```bash
 python main.py
 ```
 
-## Limitações
+## Limitations
 
-O modelo atual utiliza regras simplificadas e determinísticas. Ele não considera, nesta etapa, fatores como probabilidade de transmissão, duração da infecção, recuperação ou dados epidemiológicos reais.
+The current model uses simplified and deterministic rules. At this stage, it does not account for factors such as transmission probability, infection duration, recovery, or real epidemiological data.
 
-O simulador é um projeto de estudo em modelagem computacional e programação científica, não uma ferramenta de previsão ou apoio a decisões epidemiológicas reais.
+This simulator is an educational project focused on computational modeling and scientific programming. It is not intended to provide epidemiological predictions or support real-world public health decisions.
 
-## Objetivo de aprendizagem
+## Learning Objectives
 
-Desenvolver um projeto de software incremental para explorar, na prática, como estruturas de dados, operações vetorizadas, visualização e regras matemáticas podem ser combinadas na construção de uma simulação espacial e temporal.
+Develop an incremental software project to explore, in practice, how data structures, vectorized operations, visualization, and mathematical rules can be combined to build a spatial and temporal simulation.
