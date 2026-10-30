@@ -44,8 +44,13 @@ def propagate_infection(matriz):
 #loop to propagate the infection for 4 iterations
 for iteration in range(4):
     farm = propagate_infection(farm)
+    infected_count = np.count_nonzero(farm == 1)
+    healthy_count = np.count_nonzero(farm == 0)
     print(f"Round {iteration + 1}:" )
     print(farm)
+    print(f"Number of infected cells: {infected_count}\n")
+    print(f"Number of healthy cells: {healthy_count}\n")
+    plt.title(f"Round:{iteration + 1}\n Infected Cells: {infected_count} | Healthy Cells: {healthy_count}")
     img.set_data(farm)
     plt.pause(0.5)  
 

@@ -51,7 +51,8 @@ The project is being developed incrementally.
 - [x] Handle matrix boundaries.
 - [x] Implement infection propagation across multiple iterations.
 - [x] Implement static spatial visualization using Matplotlib.
-- [ ] Animate the progression of infection over time.
+- [x] Animate the progression of infection over time.
+- [x] Display infected and healthy cell counts during animation.
 - [ ] Experiment with different transmission rules and probabilities.
 - [ ] Introduce epidemiological states and incubation periods.
 - [ ] Explore environmental factors and spatial barriers.
